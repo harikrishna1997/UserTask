@@ -1,1 +1,21 @@
-<p>users-list works!</p>
+<table>
+  <tr>
+    <th class="column slds-p-horizontal_xx-large" *ngFor="let col of columns">
+      {{ col.name }}
+    </th>
+  </tr>
+  <tr *ngFor="let user of users$ | async">
+    <td *ngFor="let col of columns">
+      <div class="row" *ngIf="col.type == 'Text'">
+        {{ user[mapping[col.name]] }}
+      </div>
+      <div *ngIf="col.type == 'Image'">
+        <img [src]="user[mapping[col.name]]" alt="Image" />
+      </div>
+      <div *ngIf="col.type == 'Actions'">
+        <button type="button" (click)="viewUser(user)">View</button>
+        <button type="button" (click)="deleteUser(user)">Delete</button>
+      </div>
+    </td>
+  </tr>
+</table>

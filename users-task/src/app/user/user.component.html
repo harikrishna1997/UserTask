@@ -1,1 +1,9 @@
-<p>user works!</p>
+<div class="user" *ngIf="users$ | async as user">
+  <img [src]="user.avatar" alt="Image" />
+  <div>
+    {{ user.FullName }}
+  </div>
+  <div>
+    {{ user.email }}
+  </div>
+</div>
